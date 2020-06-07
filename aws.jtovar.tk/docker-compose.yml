@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  #Nginx Service
+  aws_jtovar_tk:
+    image: nginx:latest
+    ports:
+      - '8081:80'
+    volumes:
+      - ./:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      VIRTUAL_HOST: aws.jtovar.tk
+      VIRTUAL_PORT: 8081
+      LETSENCRYPT_HOST: aws.jtovar.tk
+      LETSENCRYPT_EMAIL: principal@shf.com.co
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
