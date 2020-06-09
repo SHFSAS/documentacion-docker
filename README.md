@@ -125,3 +125,15 @@ Pasos para lograrlo:
 
 - Para obtener las credenciales que se ven en el env es necesario ir a AWS IAM, crear un nuevo usuario y vincularle la politica
  AmazonEC2ContainerRegistryFullAccess
+
+
+### Scripts para la automatizacion de procesos
+
+- repull_docker.sh
+
+        git pull
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 886300509739.dkr.ecr.us-east-1.amazonaws.com
+        docker-compose -f docker-compose.dev.yml pull
+        docker-compose -f docker-compose.dev.yml down --remove-orphans
+        docker-compose -f docker-compose.dev.yml up -d
+        docker image prune -f
