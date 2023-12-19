@@ -16,6 +16,11 @@ services:
       LETSENCRYPT_EMAIL: principal@shf.com.co
     networks:
       - web
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+          max-file: "2"
 
 networks:
   web:
